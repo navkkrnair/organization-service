@@ -9,3 +9,12 @@ spring:
 logging:
   level:
     com.cts: debug
+keycloak:
+  realm: ostock-realm
+  auth-server-url: http://keycloak:8090/auth
+  ssl-required: external
+  resource: ostock
+  credentials:
+    secret: pVFMAhgJiocQdUpHYhBlb0KQ5JMWcDrB
+  use-resource-role-mappings: true
+  bearer-only: true
