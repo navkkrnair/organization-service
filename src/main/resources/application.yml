@@ -6,6 +6,19 @@ spring:
       optional:configserver:http://localhost:8888
     activate:
       on-profile: dev
+  cloud:
+    stream:
+     bindings:
+       output:
+         destination: orgChangeTopic
+         content-type: application/json
+     kafka:
+       binder:
+          brokers:
+            - kafkaserver:9092
+
+
+
 logging:
   level:
     com.cts: debug
@@ -15,6 +28,6 @@ keycloak:
   ssl-required: external
   resource: ostock
   credentials:
-    secret: pVFMAhgJiocQdUpHYhBlb0KQ5JMWcDrB
+    secret: zGfLk4M7BIpyFHx87RPlvASazL7TfPaU
   use-resource-role-mappings: true
   bearer-only: true

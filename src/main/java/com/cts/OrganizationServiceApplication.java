@@ -8,9 +8,12 @@ import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 
 @Slf4j
+@EnableBinding(Source.class)
 @SpringBootApplication
 public class OrganizationServiceApplication {
 

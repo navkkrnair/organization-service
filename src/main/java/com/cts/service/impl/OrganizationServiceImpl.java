@@ -1,5 +1,7 @@
 package com.cts.service.impl;
 
+import com.cts.events.Action;
+import com.cts.events.SimpleSourceBean;
 import com.cts.model.Organization;
 import com.cts.repository.OrganizationRepository;
 import com.cts.service.OrganizationService;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class OrganizationServiceImpl implements OrganizationService {
 
     private final OrganizationRepository repository;
+    private final SimpleSourceBean simpleSourceBean;
 
     @Override
     public Organization findById(Long organizationId) {
@@ -22,7 +25,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public Organization create(Organization organization) {
-        return repository.save(organization);
+        Organization org = repository.save(organization);
+        simpleSourceBean.publishOrganizationChange(Action.CREATED,org.getId());
+        return org;
     }
 
     @Override
