@@ -26,17 +26,20 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public Organization create(Organization organization) {
         Organization org = repository.save(organization);
-        simpleSourceBean.publishOrganizationChange(Action.CREATED,org.getId());
+        simpleSourceBean.publishOrganizationChange(Action.CREATED, org.getId());
         return org;
     }
 
     @Override
     public void update(Organization organization) {
-        repository.save(organization);
+        Organization org = repository.save(organization);
+        simpleSourceBean.publishOrganizationChange(Action.UPDATED, org.getId());
+
     }
 
     @Override
-    public void delete(Organization organization) {
-        repository.deleteById(organization.getId());
+    public void delete(Long organizationId) {
+        repository.deleteById(organizationId);
+        simpleSourceBean.publishOrganizationChange(Action.DELETED, organizationId);
     }
 }

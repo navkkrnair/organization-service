@@ -9,5 +9,5 @@ public interface OrganizationService {
 
     void update(Organization organization);
 
-    void delete(Organization organization);
+    void delete(Long organizationId);
 }
